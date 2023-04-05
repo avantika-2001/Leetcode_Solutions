@@ -23,7 +23,7 @@ public:
         while(!st1.empty()){
             if(st2.empty())
                 return false;
-            if(st1.top()<st2.top()){
+            else if(st1.top()<st2.top()){
                 st1.pop();
                 st2.pop();
             }
