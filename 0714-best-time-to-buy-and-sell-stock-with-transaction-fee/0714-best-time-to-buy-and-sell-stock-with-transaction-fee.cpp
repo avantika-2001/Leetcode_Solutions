@@ -1,23 +1,11 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices, int fee) {
-        int sum = 0,min = INT_MAX, max=0;
-        for(int p:prices){
-            if(p<max-fee) {
-                sum += max - min - fee;
-                max = 0;
-                min = p;
-            }
-            if(min>p) {
-                min = p;
-            }
-            if(p>min+fee && p>max) {
-                max = p;
-            }
+        int sell = 0, hold = sell - prices[0];
+        for (int i = 1; i < prices.size(); i++) {
+            sell = max(sell, hold + prices[i] - fee);
+            hold = max(hold, sell - prices[i]);
         }
-        if(max-min>fee) {
-            sum += max-min-fee;
-        }
-        return sum;
+        return sell;
     }
 };
