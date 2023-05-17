@@ -11,7 +11,8 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
-        int cnt=0;
+        //Without changing links
+        /*int cnt=0;
         ListNode*p=head;
         vector<int>v;
         while(p){
@@ -25,6 +26,35 @@ public:
             i++;
             j--;
         }
-        return max_sum;
+        return max_sum;*/
+        //With changing links;
+        int len=0;
+        ListNode*p=head;
+        while(p){
+            len++;
+            p=p->next;
+        }
+        int i=0;
+        p=head;
+        while(i<len/2 && p){
+            p=p->next;
+            i++;
+        }
+        ListNode* next=NULL;
+        ListNode* q=NULL;
+        while(p){
+            next=p->next;
+            p->next=q;
+            q=p;
+            p=next;
+        }
+        int maxsum=0;
+        p=head;
+        while(q){
+            maxsum=max(maxsum,p->val+q->val);
+            p=p->next;
+            q=q->next;
+        }
+        return maxsum;
     }
 };
