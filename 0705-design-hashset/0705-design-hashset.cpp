@@ -2,37 +2,19 @@ class MyHashSet {
 public:
     vector<int>v;
     MyHashSet() {
-        v.clear();
+        v.resize(1e7+1,0);
     }
     
     void add(int key) {
-        int f=0;
-        for(int i=0;i<v.size();i++){
-            if(v[i]==key){
-                f=1;
-                break;
-            }
-        }
-        if(f==0)
-            v.push_back(key);
+        v[key]=1;
     }
     
     void remove(int key) {
-        for(int i=0;i<v.size();i++){
-            if(v[i]==key){
-                v.erase(v.begin()+i);
-                break;
-            }
-        }
+        v[key]=0;
     }
     
     bool contains(int key) {
-        for(int i=0;i<v.size();i++){
-            if(v[i]==key){
-                return true;
-            }
-        }
-        return false;
+        return v[key]==1;
     }
 };
 
