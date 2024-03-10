@@ -8,7 +8,7 @@ public:
             }
         }
         for(int i=j;i<nums.size();i++){
-            nums[i]=0;
+            nums[j++]=0;
         }
     }
 };
